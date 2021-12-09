@@ -1,4 +1,4 @@
-FROM node:14.1
+FROM node:17.0.0-bullseye-slim
 
 RUN mkdir /usr/src/goof
 RUN mkdir /tmp/extracted_files
