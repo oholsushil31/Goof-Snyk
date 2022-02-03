@@ -36,7 +36,7 @@ jobs:
         command: | 
           npm install -g snyk
           snyk auth $SNYK_TOKEN
-          snyk container test jiajunngjj/docker-goof --file=./Dockerfile
+          snyk container test jiajunngjj/docker-goof --file=./Dockerfile || true
   snyk_iac_test:
     docker:
     - image: snyk/snyk-cli:npm
@@ -60,3 +60,4 @@ workflows:
           requires:
             - snyk_code_test
             - snyk_oss_test
+      - snyk_iac_test
