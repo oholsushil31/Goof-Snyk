@@ -19,4 +19,10 @@ jobs:
           npm install -g snyk
           snyk auth $SNYK_TOKEN
           snyk code test
-workflows: null
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
