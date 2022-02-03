@@ -2,13 +2,6 @@ version: 2.1
 orbs:
   snyk: snyk/snyk@1.1.2
 
-workflows:
-  build-test:
-    jobs:
-      - build
-      - test:
-         context: SNYK_TOKEN
-
 jobs:
   build:
     docker:
@@ -23,6 +16,7 @@ jobs:
     - checkout
     - run:
         command: | 
-          sudo npm install -g snyk
-          sudo snyk auth $SNYK_TOKEN
-          sudo snyk code test
+          npm install -g snyk
+          snyk auth $SNYK_TOKEN
+          snyk code test
+workflows: null
