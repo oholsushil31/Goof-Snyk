@@ -13,7 +13,6 @@ jobs:
     docker:
     - image: snyk/snyk-cli:npm
     steps:
-    - checkout
     - run:
         command: | 
           npm install -g snyk
@@ -26,6 +25,16 @@ jobs:
     - checkout
     - snyk/scan:
         token-variable: SNYK_TOKEN
+  snyk_container_test:
+    docker:
+    - image: snyk/snyk-cli:npm
+    steps:
+    - checkout
+    - run:
+        command: | 
+          npm install -g snyk
+          snyk auth $SNYK_TOKEN
+          snyk container test jiajunngjj/docker-goof --file=./Dockerfile
 workflows:
   build_and_test:
     jobs:
@@ -36,3 +45,7 @@ workflows:
       - snyk_oss_test:
           requires:
             - build
+      - snyk_container_test:
+          requires:
+            - snyk_code_test
+            - snyk_oss_test
