@@ -9,20 +9,28 @@ jobs:
     steps:
       - checkout
       - run: npm install -q
-  test:
+  snyk_code_test:
     docker:
     - image: snyk/snyk-cli:npm
     steps:
-    - checkout
     - run:
         command: | 
           npm install -g snyk
           snyk auth $SNYK_TOKEN
           snyk code test
+  snyk_oss_test:
+    docker:
+    - image: circleci/node:4.8.2
+    steps:
+      - snyk/scan:
+          token-variable: SNYK_TOKEN
 workflows:
   build_and_test:
     jobs:
       - build
-      - test:
+      - snyk_code_test:
+          requires:
+            - build
+      - snyk_oss_test:
           requires:
             - build
