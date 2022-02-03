@@ -26,7 +26,8 @@ jobs:
     - checkout
     - snyk/scan:
         token-variable: SNYK_TOKEN
-        fail-on-issues: false        
+        fail-on-issues: false
+        monitor-on-build: false      
   snyk_container_test:
     docker:
     - image: snyk/snyk-cli:npm
@@ -43,9 +44,10 @@ jobs:
     steps:
     - checkout
     - snyk/scan:
-        command: 'code test'
+        command: 'iac test'
         token-variable: SNYK_TOKEN
-        fail-on-issues: false 
+        fail-on-issues: false
+        monitor-on-build: false
 workflows:
   build_and_test:
     jobs:
