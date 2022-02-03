@@ -44,7 +44,6 @@ jobs:
     - checkout
     - snyk/scan:
         command: 'iac test'
-        target-file: main.tf
         token-variable: SNYK_TOKEN
         fail-on-issues: false 
 workflows:
