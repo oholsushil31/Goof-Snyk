@@ -37,6 +37,15 @@ jobs:
           npm install -g snyk
           snyk auth $SNYK_TOKEN
           snyk container test jiajunngjj/docker-goof --file=./Dockerfile
+  snyk_iac_test:
+    docker:
+    - image: snyk/snyk-cli:npm
+    steps:
+    - checkout
+    - snyk/scan:
+        command: 'iac test'
+        token-variable: SNYK_TOKEN
+        fail-on-issues: false 
 workflows:
   build_and_test:
     jobs:
