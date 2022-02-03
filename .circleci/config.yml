@@ -23,6 +23,6 @@ jobs:
     - checkout
     - run:
         command: | 
-          npm install -g snyk
-          snyk auth $SNYK_TOKEN
-          snyk code test
+          sudo npm install -g snyk
+          sudo snyk auth $SNYK_TOKEN
+          sudo snyk code test
