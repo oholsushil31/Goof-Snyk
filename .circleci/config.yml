@@ -26,6 +26,7 @@ jobs:
     - checkout
     - snyk/scan:
         token-variable: SNYK_TOKEN
+        fail-on-issues: false        
   snyk_container_test:
     docker:
     - image: snyk/snyk-cli:npm
