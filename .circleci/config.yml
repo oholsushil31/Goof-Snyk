@@ -43,7 +43,7 @@ jobs:
     steps:
     - checkout
     - snyk/scan:
-        command: 'iac test'
+        command: 'code test'
         token-variable: SNYK_TOKEN
         fail-on-issues: false 
 workflows:
