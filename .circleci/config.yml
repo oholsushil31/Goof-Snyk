@@ -1,5 +1,4 @@
 version: 2.1
-
 orbs:
   snyk: snyk/snyk@1.1.2
 
@@ -8,22 +7,22 @@ workflows:
     jobs:
       - build
       - test:
-          context: SNYK_TOKEN
+         context: SNYK_TOKEN
 
-  jobs:
-    build:
-      docker:
-        - image: circleci/node:4.8.2
-      steps:
-        - checkout
-        - run: npm install -q
-        
-    test:
-      docker:
-        - image: circleci/node:4.8.2
-      steps:
-        - command: | 
-            npm install -g snyk
-            snyk auth $SNYK_TOKEN
-            snyk code test
-
+jobs:
+  build:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      - checkout
+      - run: npm install -q
+  test:
+    docker:
+    - image: circleci/node:4.8.2
+    steps:
+    - checkout
+    - run:
+        command: | 
+          npm install -g snyk
+          snyk auth $SNYK_TOKEN
+          snyk code test
