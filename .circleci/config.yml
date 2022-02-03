@@ -39,7 +39,7 @@ jobs:
           snyk container test jiajunngjj/docker-goof --file=./Dockerfile || true
   snyk_iac_test:
     docker:
-    - image: snyk/snyk-cli:npm
+    - image: circleci/node:4.8.2
     steps:
     - checkout
     - snyk/scan:
