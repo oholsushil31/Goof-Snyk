@@ -16,7 +16,6 @@ jobs:
     - checkout
     - run:
         command: | 
-          npm install -g snyk
           snyk auth $SNYK_TOKEN
           snyk code test || true
   snyk_oss_test:
