@@ -2,6 +2,9 @@
  * Module dependencies.
  */
 
+// new relic setup
+ require('newrelic');
+
 // mongoose setup
 require('./mongoose-db');
 require('./typeorm-db')
