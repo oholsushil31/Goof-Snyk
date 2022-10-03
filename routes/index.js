@@ -187,6 +187,14 @@ exports.create = function (req, res, next) {
   });
 };
 
+
+function isBlankOne(str) {
+  return (!str || /^\s*$/.test(str));
+}
+
+
+
+
 exports.destroy = function (req, res, next) {
   Todo.findById(req.params.id, function (err, todo) {
 
